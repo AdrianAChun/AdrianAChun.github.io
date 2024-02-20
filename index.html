@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>My Personal Homepage</title>
+    <link href='https://fonts.googleapis.com/css?family=Miltonian+Tattoo' rel='stylesheet'> <!--https://www.w3schools.com/howto/howto_google_fonts.asp -->
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans+SC' rel='stylesheet'> <!--https://www.w3schools.com/howto/howto_google_fonts.asp -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <div class="navbar">
+  <div class="top-nav">
+    <div class="container">
+      <span>
+        <i class="mobile"></i> (+1) 647-xxx-xxxx
+      </span>
+      <span>
+        <i class="email"></i> adrianng@my.yorku.ca
+      </span>
+    </div>
+  </div>
+  <nav>
+    <div class="container">
+      <a class="brand" href="index.html">Adrian Ng</a>
+      <ul>
+        <li class="bar"><a href="#welcome">Home</a></li>
+        <li class="bar"><a href="#about">About</a></li>
+        <li class="bar"><a href="#resume">Resume</a></li>
+        <li class="bar"><a href="#project">Work</a></li>
+      </ul>
+    </div>
+  </nav>
+</div> <!-- end navbar -->
+<hr>
+<br><br><br><br><br>
+
+
+
+<div id="welcome">
+  <div class="container">
+    <br><br>
+    <h1>Welcome to my web page!</h1>
+    <br><br>
+    <table>
+      <tr>
+        <td>
+          <img src="images/profile.jpeg" height="450" width="450" style="margin-left: 130px;">
+        </td>
+        <td>
+          <h2>Recent roles</h2>
+          <p class="mainpage">
+            Information Technology Student of York University
+          </p>
+          <br><br>
+          <h2>Upcoming Projects</h2>
+          <p class="mainpage">
+            Coding Assignment
+            <br>
+            JavaScript Assignment
+          </p>
+
+        </td>
+      </tr>
+    </table>
+  </div>
+  <br><br><br><br><br>
+</div> <!--END OF HOME-->
+
+
+<div id="about">
+  <br><br>
+  <div class="container">
+    <h3>About Me</h3>
+    <table>
+      <tr>
+        <td>
+          <p class="paragraph">
+          Hi there, My name is Adrian Ng and welcome to my personal website. <br>
+          I am studying Information Technology. I am so glad you have found my page.
+          <br>Within this web page, you will find some assignments for the courses I took while attending York University.
+          The reason for my personal website is to showcase my achievements and reflect upon the things that I have learned and how all the
+          information builds upon each other to help me be an all-around learned student.
+          </p>
+        </td>
+        <td>
+          <img src="images/about_me.jpg" height="400" width="500" style="margin-right: 80px;">
+        </td>
+      </tr>
+    </table>
+  </div>
+</div><!-- end of about me-->
+
+
+<div id="resume">
+  <br><br>
+  <div class="container">
+    <h3>My skills</h3>
+    <div class="listcenter">
+      <br><br>
+      <div class="myskills">
+        <h4>Skills</h4>
+          <ul>
+            <li>MS Word</li>
+            <li>MS PowerPoint</li>
+            <li>MS Excel</li>
+            <li>Java</li>
+            <li>HTML</li>
+            <li>SQL</li>
+            <li>Mechanic Repair / Replacement</li>
+          </ul>
+      </div>
+      <div class="myskills">
+        <h4>Education</h4>
+        <ul>
+          <li>York University (2020/9 to Present)</li>
+          <li>Stouffville District Secondary School (Date From 2019/9 - 2020/6)</li>
+          <li>David Suzuki Secondary Schoolb (Date From 2017/12 - 2019/6 (Grade 10 To Grade 11))</li>
+        </ul>
+      </div>
+      <div class="myskills">
+        <h4>Interest</h4>
+        <ul>
+          <li>Play Basketball, Soccer</li>
+          <li>Listen to Music</li>
+          <li>Watching Sport Game</li>
+          <li>Travel</li>
+          <li>Exploring good food</li>
+        </ul>
+      </div>
+      <div class="myskills">
+        <h4>Language</h4>
+        <p>Fluent in spoken and written Cantonese and English
+          <br>Fair in spoken Mandarin
+        </p>
+
+      </div>
+    </div>
+  </div> <!-- end of skills-->
+
+
+  <div id="project">
+    <br><br>
+    <div class="container">
+      <h3>Work Project</h3>
+      <div class="listcenter">
+        <div class="work">
+          <h4>Tic Tae Toe Game in Java</h4>
+          <a href="project/TicTaeToe/game/assignment.html" class="btn">Learn More</a>
+        </div>
+        <div class="work">
+          <h4>Math Test Game in HTML</h4>
+          <a href="project/MathQuiz/game/index.html" class="btn">Learn More</a>
+        </div>
+        <div class="work">
+          <h4>School Mangement System in SQL</h4>
+          <a href="#" class="btn">Learn More</a>
+        </div>
+      </div>
+      <a href="#" class="btnDownload">Download CV</a>
+    </div>
+  </div> <!--end of project-->
+</div>
+<br><br>
+
+<!--jquery-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+  $(window).scroll(function(event) {
+          var scroll = $(window).scrollTop();
+
+          if (scroll > 200) {
+              $(".navbar").addClass('solid');
+          } else {
+              $(".navbar").removeClass('solid');
+          }
+      });
+</script>
+
+  </body>
+</html>

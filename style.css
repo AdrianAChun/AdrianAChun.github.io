@@ -1,0 +1,236 @@
+body {
+	background-color: #F2F1F1;
+}
+* {
+    font-family: 'Noto Sans SC';
+    margin: 0;
+    padding: 0;
+    columns: #0F0F0F;
+}
+
+.listcenter {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+.btn{
+	/* editing the text */
+  text-decoration: underline;
+  font-size: 18px;
+  color: #ffcd00;
+  border-style: hidden;
+	border-radius: 38px;
+  transition: all 0.2s ease-in-out;
+  background-color: inherit;
+}
+.btn:hover {
+  color: rgba(255, 255, 255, 1);
+  background-color: #2196f3;
+  box-shadow: 0 5px 15px rgba(145, 92, 182, .4);
+}
+
+.btnDownload{
+  background-color: black;
+	position: relative;
+	left:1150px;
+	bottom:30px;
+  /* editing the text */
+  font-size: 18px;
+  color: white;
+	/* padding*/
+	padding-right: 20px;
+	padding-left: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+
+	box-sizing: border-box;
+	margin-right: 50px;
+	text-align: center;
+}
+.btnDownload:hover {
+color: black;
+background-color:white;
+box-shadow: 0 5px 15px rgba(145, 92, 182, .4);
+}
+
+
+#welcome{
+	background-color: HoneyDew;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 1280px;
+    width: 90%;
+}
+
+.navbar {
+	z-index: 999;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	transition: all .5s;
+}
+
+.navbar.solid {
+    background-color: lightgrey;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.3);
+}
+
+.navbar .top-nav {
+    line-height: 40px;
+    color: purple;
+    border-bottom: 1px solid #D8D8D8;
+}
+
+.navbar .top-nav .container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar .top-nav .container span i {
+    font-size: 14px;
+    margin-right: 7px;
+}
+
+.navbar nav {
+    line-height: 60px;
+}
+
+.navbar nav .container {
+    display: flex;
+    justify-content: space-between;
+}
+.navbar nav a.brand {
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: darkblue;
+}
+
+.navbar nav ul li {
+    display: inline-block;
+}
+
+.navbar nav ul li:not(:last-child) {
+    margin-right: 25px;
+}
+.navbar nav ul li a {
+    text-decoration: none;
+    color: black;
+}
+.bar a:hover {
+
+  border: solid;
+  border-color: white;
+}
+h1 {
+  font-size: 3em;
+  font-family: 'Miltonian Tattoo';
+  color: Orange;
+  border-style: hidden;
+  text-align: center;
+}
+h2
+{
+  margin-left: 50px;
+  margin-right: 100px;
+}
+.mainpage{
+  margin-left: 50px;
+  margin-right: 150px;
+}
+
+
+#about {
+	padding-top: 70px;
+	padding-bottom: 80px;
+}
+#about h3{
+  text-transform: capitalize;
+  margin-bottom: 50px;
+  color: brown;
+	font-size: 2em;
+	margin-bottom: 10px;
+	margin-left: 20px;
+
+}
+.paragraph {
+	font-family: sans-serif;
+	color:#4d4d4d;
+	font-size: 19.5px;
+	line-height: 2em;
+	text-align: center;
+	margin-left: 20px;
+	margin-right: 75px;
+	background-color: silver;
+}
+
+
+#resume{
+	background-color:lavender;
+}
+#resume h3{
+	text-transform: capitalize;
+  margin-bottom: 50px;
+  color: NAVY;
+	font-size: 2em;
+	margin-bottom: 10px;
+	margin-left: 20px;
+}
+
+.myskills h4{
+	text-transform: capitalize;
+	margin-bottom: 15px;
+	font-size: 25px;
+	text-decoration: underline;
+}
+.myskills .listcenter {
+	margin-left: -20px;
+	margin-right: -20px;
+}
+
+.myskills {
+	max-width: 385px;
+	width: 385px;
+	margin: 27px;
+	margin-bottom: 40px;
+}
+.myskills ul ,li ,p{
+	color: RebeccaPurple;
+	font-size: 18px;
+	line-height: 2em;
+}
+
+
+#project{
+	background-color: DimGray;
+}
+#project h3{
+	text-transform: capitalize;
+  margin-bottom: 50px;
+  color: MintCream;
+	font-size: 2em;
+	margin-bottom: 10px;
+	margin-left: 20px;
+}
+
+.work h4{
+	text-transform: capitalize;
+	margin-bottom: 15px;
+	font-size: 20px;
+	color: PapayaWhip;
+
+}
+.work .listcenter {
+	margin-left: -20px;
+	margin-right: -20px;
+}
+
+.work {
+	max-width: 385px;
+	width: 385px;
+	margin: 27px;
+	margin-bottom: 40px;
+}

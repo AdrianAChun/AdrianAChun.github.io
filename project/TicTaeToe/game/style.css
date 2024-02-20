@@ -1,0 +1,115 @@
+.navigation-bar-start {
+  list-style-type: none; /*把所有圓點都刪除*/
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: rgba(20,20,20,0); /*rgba means rgb color + opacity, 0 opacity means invisible background*/
+}
+.navigation-bar {
+    float: left;
+  width: 24%; /*make 4 boxes by using 100/4 which is equals to 24.5 */
+
+}
+.navigation-bar a {
+    display: block;
+  color: Khaki  ;
+  text-align: center;
+  padding: 16px 25px;
+  text-decoration: none;
+  font-size: 25px; /*since it is a website so it has a underline text-decoration, make it to none can make it invisible*/
+}
+.navigation-bar a:hover {
+    background-color: rgb(100,100,100);
+  	border-radius: 8px;
+}
+body{
+  background-attachment: fixed;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.8)), url(https://wallpoper.com/images/00/43/32/27/tic-tac-toe-game-over_00433227.jpg);
+}
+h1{
+    text-align: center;
+    font-size: 3.5em;
+    color: lightblue;
+    font-family: Fresca;
+}
+.name{
+    text-align: center;
+    font-size: 2em;
+    color: sandybrown;
+    font-family: gafata;
+}
+.image{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.tips{
+    color: white;
+    text-align: left;
+    font-size: 25px;
+    text-indent: 30px;
+    line-height: 180%;
+    font-family: Dekko;
+    color: #66CDAA;
+}
+.paragraph{
+      color: MistyRose;
+      margin-left: 300px;
+      margin-right: 300px;
+      text-align: center;
+      font-size: 25px;
+      text-indent: 50px;
+      line-height: 200%;
+      font-family: Antic;
+}
+.paragraph1{
+      color: violet;
+      margin-left: 300px;
+      margin-right: 300px;
+      text-align: center;
+      font-size: 23px;
+      text-indent: 50px;
+      line-height: 200%;
+      font-family: Antic;
+}
+.paragraph2{
+      color: powderblue;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      font-size: 20px;
+      text-indent: 40px;
+      line-height: 200%;
+      font-family: denk one;
+    }
+
+.bar{
+    float: center;
+    width: 49%; /*make 4 boxes by using 100/4 which is equals to 24.5 */
+
+}
+.bar a {
+  display: block;
+  color: royalBlue ;
+  text-align: center;
+  padding: 16px 100px;
+  text-decoration: none;
+  font-size: 25px; /*since it is a website so it has a underline text-decoration, make it to none can make it invisible*/
+
+}
+.bar a:hover {
+    background-color: rgb(100,100,100);
+  	border-radius: 8px;
+}
+table{
+  margin-left: auto;
+  margin-right: auto;
+}
+.click{
+
+    font-size: 3em;
+    font-family: Graduate;
+    text-align: center;
+    color: MistyRose;
+
+}

@@ -1,0 +1,499 @@
+/*
+ * Matthew, Adrian
+ * 22/4/2020
+ * Tic Tac Hoe
+ * The main class of the game, Tic Tac Hoe
+ */
+package com.company;
+
+import com.company.enums.ElementsData;
+import com.company.enums.GameType;
+import com.company.game.Game;
+
+import java.util.Scanner;
+
+/*
+ * Created by Matthew Yu, 22/4/2020, 14:38
+ */
+ 
+public class Main {
+
+    public static String username = ""; //The player's username, will be used to record data and the welcome message
+    public static int gameMode = 0;
+    /* Gamemode with int
+     * 1 = player vs computer
+     * 2 = player vs player
+     * 3 = check how many games the player played (Used FileIO here)
+     * 4 = Exit the game
+     */
+    public static Scanner scanner = new Scanner(System.in); //Read what user typed in console
+
+    //Program starts here
+    public static void main(String[] args) {
+        System.out.println("Welcome to Tic Tac Hoe!"); //Welcome message
+        System.out.println("By Adrian and Matthew"); //Welcome message again
+        DataRecorder.loadData(); //Load data file
+        sleep(1000); //1 second delay
+
+        boolean logged = false; //check log in, if player has username typed, then true, else false
+        do {
+            System.out.println(" ");
+            System.out.println("What's your username?"); //Ask for username
+            username = scanner.next(); //Let user type his username
+            if (username.isEmpty()) { //Check if username is empty or not
+                System.out.println("Username cannot be empty!");
+            } else if (username.contains(";")) { //Check if username has ';', because we will use ';' to split the String to Arrays
+                System.out.println("Invalid username! Please try again!");
+            } else {
+                logged = true; //set logged in equals to true so the loop can be quited
+            }
+        } while (!logged); //If logged is false, continue to loop
+
+        if (!DataRecorder.containsUsername(username)) { //If the data file didn't have that username, register that user
+            DataRecorder.register(username);
+        }
+
+        while (gameMode != 4) { //if gamemode is not equals to 4 then continue to loop, it is 4 because 4 will exit the program
+            do {
+                sendSelect(); //Ask fo what gamemode does the user wants to play/do
+                String select = scanner.next(); //Let player to type what gamemode he wants
+                if (isInt(select)) { //Check if it is int or not
+                    gameMode = Integer.parseInt(select); //Set the gamemode
+                } else {
+                    //Will do this part when it is not a int aka number
+                    System.out.println(select + " is not a number, please try it again.");
+                    System.out.println(" ");
+                }
+                if (1 > gameMode || gameMode > 4) { //check if it is less than 1 or bigger than 4
+                    System.out.println("Invalid number, please try it again.");
+                    System.out.println(" ");
+                }
+            } while (1 > gameMode || gameMode > 4); //Continue to loop when it is less than 1 or bigger than 4
+
+            if (gameMode == 1) { //If player chose gamemode 1, which is player vs computer
+                ElementsData elementsData = ElementsData.NOTHING; //Create var, which will be player's symbol (X/O)
+                do {
+                    System.out.println("Select a symbol: (X/O)"); //Tell player to select a symbol
+                    String selected = ""; //new String var which will store what the player selected
+                    try {
+                        selected = scanner.next(); //Let player to choose a symbol
+                        elementsData = ElementsData.valueOf(selected); //Try to convert what player typed from String to ElementsData, if cannot, it throws IllegalArgumentException
+                        if (elementsData == ElementsData.NOTHING) { //Check if the user typed 'NOTHING'
+                            System.out.println("It cannot be 'NOTHING'! Try again!"); //Tell user that cannot use 'NOTHING' as the symbol
+                        }
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("There's no symbol named " + selected + ", please try again."); //Tell player there's no symbol called 'selected'
+                    }
+                } while (elementsData == ElementsData.NOTHING); //Continue to loop when elementsData is NOTHING, which means it doesn't have a symbol
+
+                new Game(GameType.PlayerVSComputer, elementsData, ElementsData.getFlipSide(elementsData)); //Start a game
+            } else if (gameMode == 2) {
+                ElementsData elementsData = ElementsData.NOTHING;
+                do {
+                    System.out.println("Player 1, Select a symbol: (X/O)"); //Create var, which will be player 1's symbol (X/O)
+                    String selected = ""; //new String var which will store what the player selected
+                    try {
+                        selected = scanner.next(); //Let player to choose a symbol
+                        elementsData = ElementsData.valueOf(selected); //Try to convert what player typed from String to ElementsData, if cannot, it throws IllegalArgumentException
+                        if (elementsData == ElementsData.NOTHING) { //Check if the user typed 'NOTHING'
+                            System.out.println("It cannot be 'NOTHING'! Try again!"); //Tell user that cannot use 'NOTHING' as the symbol
+                        }
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("There's no symbol named " + selected + ", please try again."); //Tell player there's no symbol called 'selected'
+                    }
+                } while (elementsData == ElementsData.NOTHING); //Continue to loop when elementsData is NOTHING, which means it doesn't have a symbol
+
+                new Game(GameType.PlayerVSPlayer, elementsData, ElementsData.getFlipSide(elementsData)); //Start a game
+            } else if (gameMode == 3) {
+                System.out.println("You played " + DataRecorder.findPlayedTimes(username) + " times in this game, good job!"); //Tell the player how
+                sleep(1000); //Sleep for 1 second, and then back to the 1-4 thing
+            } else { //If it become here, then it must be '4'
+                System.out.println("Bye"); //Tell player 'bye' lol
+                System.exit(0); //Exit the program
+            }
+        }
+    }
+
+    //This method will cause the game sleep for 'delay' long, which 1000 is 1 second
+    public static void sleep(long delay) {
+        try {
+            Thread.sleep(delay); //make the current thread sleep, it may cause InterruptedException.
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //Send instructions message to player
+    public static void sendSelect() {
+        gameMode = 0; //reset gamemode
+        System.out.println("Hello, " + username + "!");
+        System.out.println("Type '1' and 'Enter' to enter a game with computer");
+        System.out.println("Type '2' and 'Enter' to enter a game with a friend");
+        System.out.println("Type '3' and 'Enter' to check your how many games you played!");
+        System.out.println("Type '4' and 'Enter' exit the game");
+    }
+
+    //A method to check if the String is an int, if yes, return true, else false
+    public static boolean isInt(String s) {
+        try {
+            Integer.parseInt(s); //Try to convert the string into int, it will throws NumberFormatException if it is not an int.
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return true;
+    }
+
+}
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+package com.company;
+
+import java.io.*;
+import java.nio.file.Files;
+import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Collectors;
+
+/*
+ * Created by Adrian Ng, 23/4/2020, 21:18pm
+ */
+
+public class DataRecorder {
+
+    private static File file; //the file which record data
+    public static String fileName = "data.txt"; //the file name
+
+    public static void loadData() { //a method that load data file
+        file = new File(fileName); //create a new file var
+        if (!file.exists()) { //if the file is not exists, then generate one, it may throw IOException
+            try {
+                file.createNewFile(); //create new file, it returns boolean but we are gonna ignore it
+            } catch (IOException e) {
+                System.out.println("Cannot create file " + fileName + " for reason " + e.getMessage() + ", please try again later."); //error message
+                System.exit(0); //quit game
+            }
+        }
+    }
+
+    public static boolean containsUsername(String username) { //a method that check if the username exists in data file or not, if yes, then returns true, else false
+        try {
+            List<String> dataInString = Files.readAllLines(file.toPath()); //An list that contains all lines of the file
+            for (String lines : dataInString) { //loop though all the string
+                if (lines.split(";").length != 2) { //if the length of the split string is not equals to 2 then continue the loop without going further down
+                    continue;
+                }
+                if (lines.split(";")[0].equalsIgnoreCase(username)) { //if the first split string contains the username then return true, else false
+                    return true;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static void register(String username) { //a method that register the username
+        try {
+            FileWriter fw = new FileWriter(file, true); //FileWriter to prepare to write the file
+            BufferedWriter bw = new BufferedWriter(fw); //BufferedWriter to support FileWriter
+
+            bw.write(username + ";0\r\n"); //write line
+
+            bw.close(); //close the BufferedWriter, save
+        } catch (IOException e) { //May cause IOException, so catch it
+            e.printStackTrace();
+        }
+    }
+
+    public static String findPlayedTimes(String username) { //a method that find how many times does the player played
+        try {
+            FileReader fr = new FileReader(file); //FileReader to prepare to read the file
+            BufferedReader br = new BufferedReader(fr); //BufferedReader to support FileReader
+
+            for (String data : br.lines().collect(Collectors.toList())) { //Loop though all lines of the data file
+                if (data.split(";")[0].equals(username)) { //if the first split string equals to the username, then return the second split string
+                    return data.split(";")[1];
+                }
+            }
+
+            br.close(); //close the BufferedReader
+        } catch (IOException e) { //May cause IOException, so catch it
+            e.printStackTrace();
+        }
+
+        return "";
+    }
+
+    public static void addPlayTimes(String username) { //a method that add play time to a username
+        try {
+            FileReader fr = new FileReader(file); //FileReader to prepare to read the file
+            BufferedReader br = new BufferedReader(fr); //BufferedReader to support FileReader
+
+            List<String> dataList = br.lines().collect(Collectors.toList()); //All lines of the data
+            int times = 0; //a var that get how many play times does the username have, then we have just simply +1 to the play times
+
+            Iterator<String> dataIterator = dataList.iterator(); //A iterator because we have to remove something in a list
+            while (dataIterator.hasNext()) { //continue to loop if the iterator has next string
+                String data = dataIterator.next(); //get next line of dataIterator
+                if (data.split(";")[0].equals(username)) { //if the first split string is username, then remove the data from the data file
+                    times = Integer.parseInt(data.split(";")[1]);
+                    dataIterator.remove();
+                }
+            }
+
+            dataList.add(username + ";" + (times + 1)); //add back the data with +1 in it
+
+            FileWriter fw = new FileWriter(file); //FileWriter to prepare to write the file
+            BufferedWriter bw = new BufferedWriter(fw); //BufferedWriter to support FileWriter
+
+            for (String data : dataList) { //Loop though the dataList
+                bw.write(data + "\r\n"); //put those string back into the file
+            }
+
+            bw.close(); //Close the BufferedWriter
+        } catch (IOException e) { //May cause IOException, so catch it
+            e.printStackTrace();
+        }
+    }
+}
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+package com.company.game;
+
+import com.company.DataRecorder;
+import com.company.Main;
+import com.company.enums.ElementsData;
+import com.company.enums.GameType;
+
+import java.util.Random;
+
+/*
+ * Created by Matthew, 23/4/2020 , 17:14
+ */
+public class Game {
+
+    private final GameType gameType; //The Type of the game, can be PlayerVSPlayer and PlayerVSComputer
+    private final ElementsData player1; //The element data of player 1, usually used to get the symbol of the element
+    private final ElementsData player2; //The element data of player 2, usually used to get the symbol of the element. If gameType is PlayerVSComputer, then player2 will be computer
+    private String winner = ""; //Winner name
+    private String player = ""; //The current round of the player, should only be Player 1, Player 2, Computer
+
+    //2D arrays of the Tic Tac Hoe table
+    //Put all slot with NOTHING, because it should be NOTHING
+    public ElementsData[][] elementsDatas = {
+            {ElementsData.NOTHING, ElementsData.NOTHING, ElementsData.NOTHING},
+            {ElementsData.NOTHING, ElementsData.NOTHING, ElementsData.NOTHING},
+            {ElementsData.NOTHING, ElementsData.NOTHING, ElementsData.NOTHING}
+    };
+
+    //Create a game
+    public Game(GameType gameType, ElementsData player1, ElementsData player2) {
+        this.gameType = gameType; //set gameType to gameType
+        this.player1 = player1; //set player1 to player1
+        this.player2 = player2; //set player2 to player2
+
+        System.out.println("TIPS: When you choose a spot, just simply type the spot number :D");
+        graphTicTacHoeTable();
+
+        Main.sleep(3000); //Make the game stop for 3 seconds, so player can watch the tips maybe!?
+
+        int random = new Random().nextInt(2); //generate a number whoch between 0 and 1
+        player = random == 0 ? "Player 1" : gameType == GameType.PlayerVSPlayer ? "Player 2" : "Computer"; //Select
+        System.out.println("Rolling dice... It is " + player + "'s turn!"); //Telling the player the random's result
+
+        while (!checkWins() && !checkDraw()) { //if no one wins, or those 9 spot are NOTHING, then loop
+            System.out.println(player + ", please select a spot!"); //Tell player to select a spot
+            int choice = 0;
+            do {
+                if (player.equals("Computer") && gameType == GameType.PlayerVSComputer) { //Check if current round player is a computer or not, if yes, then random generate a number, if no, then let current round player to choose a number
+                    System.out.println("Computer is thinking..."); //Tell player that computer is thinking
+                    Main.sleep(1000); //Stop game for 1 second
+                    choice = computerChoice(); //let computer to generate a number
+                } else {
+                    String select = Main.scanner.next(); //Let player to input a number
+                    if (Main.isInt(select)) { //Check if it is an int
+                        choice = Integer.parseInt(select); //Convert the string into int
+                    } else {
+                        System.out.println(select + " is not a number, please try it again."); //Tell player it is not a number
+                        System.out.println(" ");
+                    }
+                }
+                if (1 > choice || choice > 9) { //Check if it is less than 1 or more than 9
+                    System.out.println("Invalid number, please try it again."); //Tell player that it is not a vaild number
+                    System.out.println(" ");
+                } else {
+                    int slotDummy = choice - 1; //Because of an array starts with 0, so -1 first
+                    int xSlot = (int) Math.floor((double) slotDummy / 3); //get x slot with
+                    int ySlot = slotDummy % 3; //get y slot
+
+                    if (elementsDatas[xSlot][ySlot] != ElementsData.NOTHING) { //Check if the position is already chosen or not
+                        System.out.println("It is already been chosen! Please try again!"); //Tell player that the number is already chosen
+                        choice = 0; //reset
+                    } else {
+                        if (player.equals("Player 1")) { //If current player is player 1
+                            elementsDatas[xSlot][ySlot] = player1; //Then set that slot to player 1's element
+                        } else if (player.equals("Player 2") || player.equals("Computer")) { //else if current player is player 2 or computer
+                            elementsDatas[xSlot][ySlot] = player2; //Then set that slot to player 2's element
+                        }
+
+                        System.out.println(player + " chose spot " + choice + "! Current graph:"); //Tell output
+                        graphTicTacHoeTable(); //Graph the table, output result table
+                        if (!checkWins()) { //If it is not win
+                            flipPlayerSide(); //Then flip the side of player
+                        }
+                    }
+                }
+            } while (1 > choice || choice > 9); //If choice is lower than 1 or higher than 9, then loop
+        }
+
+        if (checkWins()) { //If someone already wins
+            System.out.println(winner + " win!"); //Output who wins
+            DataRecorder.addPlayTimes(Main.username); //Add played times to that player
+        } else if (checkDraw()) { //If all 9 spots is not NOTHING
+            System.out.println("Draw! Restarting the game!"); //Output the game is draw
+            Main.sleep(1000); //Stop the game for 1 seconds
+            new Game(gameType, player1, player2); //Restart the game
+        }
+        Main.sleep(3000); //Stop 3 seconds
+    }
+
+    public GameType getGameType() { //Get the gametype of the game
+        return gameType;
+    }
+
+    public boolean checkWins() { //Check if someone wins or not
+        //The reason why I use ElementsData.match instead of == is because match will also check if those two elements included NOTHING, if yes, the return false
+        for (int x = 0; x <= 2; x++) { //loop though 0-2
+            if (ElementsData.match(elementsDatas[x][0], elementsDatas[x][1]) && ElementsData.match(elementsDatas[x][0], elementsDatas[x][2])) { //Check x axis position
+                winner = elementsDatas[x][0] == player1 ? "Player 1" : getGameType() == GameType.PlayerVSPlayer ? "Player 2" : "Computer"; //set winner
+                return true;
+            }
+            if (ElementsData.match(elementsDatas[0][x], elementsDatas[1][x]) && ElementsData.match(elementsDatas[0][x], elementsDatas[2][x])) { //Check y axis position
+                winner = elementsDatas[0][x] == player1 ? "Player 1" : getGameType() == GameType.PlayerVSPlayer ? "Player 2" : "Computer";
+                return true;
+            }
+        }
+        if (ElementsData.match(elementsDatas[0][0], elementsDatas[1][1]) && ElementsData.match(elementsDatas[0][0], elementsDatas[2][2])) { //check slash
+            winner = elementsDatas[0][0] == player1 ? "Player 1" : getGameType() == GameType.PlayerVSPlayer ? "Player 2" : "Computer";
+            return true;
+        } else if (ElementsData.match(elementsDatas[0][2], elementsDatas[1][1]) && ElementsData.match(elementsDatas[0][2], elementsDatas[2][0])) { //check slash
+            winner = elementsDatas[0][2] == player1 ? "Player 1" : getGameType() == GameType.PlayerVSPlayer ? "Player 2" : "Computer";
+            return true;
+        }
+        return false;
+    }
+
+    public boolean checkDraw() { //Check if the game already filled with X or O without NOTHING
+        for (int x = 0; x <= 2; x++) { //Loop though x axis
+            for (int y = 0; y <= 2; y++) { //Loop though y axis
+                if (elementsDatas[x][y] == ElementsData.NOTHING) { //Check if the elements is NOTHING, return false
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public void graphTicTacHoeTable() { //Graph the current Tic Tac Hoe table
+        System.out.println(
+                (elementsDatas[0][0] == ElementsData.NOTHING ? "1" : elementsDatas[0][0].getReadAble) + " | " +
+                (elementsDatas[0][1] == ElementsData.NOTHING ? "2" : elementsDatas[0][1].getReadAble) + " | " +
+                (elementsDatas[0][2] == ElementsData.NOTHING ? "3" : elementsDatas[0][2].getReadAble)
+        );
+        System.out.println("----------");
+        System.out.println(
+                (elementsDatas[1][0] == ElementsData.NOTHING ? "4" : elementsDatas[1][0].getReadAble) + " | " +
+                (elementsDatas[1][1] == ElementsData.NOTHING ? "5" : elementsDatas[1][1].getReadAble) + " | " +
+                (elementsDatas[1][2] == ElementsData.NOTHING ? "6" : elementsDatas[1][2].getReadAble)
+        );
+        System.out.println("----------");
+        System.out.println(
+                (elementsDatas[2][0] == ElementsData.NOTHING ? "7" : elementsDatas[2][0].getReadAble) + " | " +
+                (elementsDatas[2][1] == ElementsData.NOTHING ? "8" : elementsDatas[2][1].getReadAble) + " | " +
+                (elementsDatas[2][2] == ElementsData.NOTHING ? "9" : elementsDatas[2][2].getReadAble)
+        );
+    }
+
+    public void flipPlayerSide() { //swap current player side
+        if (player.equals("Player 1")) { //If player is equal to 'Player 1'
+            player = (getGameType() == GameType.PlayerVSPlayer ? "Player 2" : "Computer"); //if gametype is PlayerVSPlayer, then set current player side to 'Player 2', else 'Computer'
+        } else if (player.equals("Player 2") || player.equals("Computer")) { //If player is equal to 'Player 2' or 'Computer'
+            player = "Player 1"; //Set current player side to 'Player 1'
+        }
+    }
+
+    public int computerChoice() { //Generate a number which is computer's choice for the spot of the game
+        int randomChoice, slotDummy, xSlot, ySlot; //create var
+
+        do {
+            randomChoice = new Random().nextInt(9) + 1; //set randomChoice to 1-9
+            slotDummy = randomChoice - 1; //make randomChoice -1
+            xSlot = (int) Math.floor((double) slotDummy / 3); //get x axis number
+            ySlot = slotDummy % 3; //get y axis number
+        } while (elementsDatas[xSlot][ySlot] != ElementsData.NOTHING); //if the number spot that computer generated is not NOTHING, then continue to loop
+
+        return randomChoice; //return the number which computer chose
+    }
+
+}
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+/*
+ * Created by Adrian Ng, 23/4/2020 , 16:30pm
+ */
+ 
+
+package com.company.enums;
+
+//Enum is like a multiple choice, if method asked for GameType, it has to select one.
+public enum GameType {
+
+    PlayerVSPlayer, //Player vs Player
+    PlayerVSComputer //Player vs Computer
+
+}
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+package com.company.enums;
+
+
+/*
+ * Created by Adrian Ng, 23/4/2020 , 16:42pm
+ */
+ 
+public enum ElementsData {
+
+    X("X"), //Symbol X
+    O("O"), //Symbol Y
+    NOTHING(" "); //NOTHING, means no elements in that column
+
+    public final String getReadAble; //Get the symbol of the elements, used in graphing the table
+
+    ElementsData(String s) {
+        getReadAble = s;
+    }
+
+    //get the other side of the element
+    public static ElementsData getFlipSide(ElementsData elementsData) {
+        if (elementsData == ElementsData.X) { //if elements is X, the return O
+            return ElementsData.O;
+        } else if (elementsData == ElementsData.O) { //if elements if O, then return X
+            return ElementsData.X;
+        } else throw new UnsupportedOperationException("Other ElementsData is not supported."); //Throw UnsupportedOperationException if elements is not X or O
+    }
+
+    //Check if first and second is equals to each other, if one of them are NOTHING, then return false, else return first is equals to second or not
+    public static boolean match(ElementsData first, ElementsData second) {
+        if (first == ElementsData.NOTHING || second == ElementsData.NOTHING) {
+            return false;
+        }
+        return first == second;
+    }
+}
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

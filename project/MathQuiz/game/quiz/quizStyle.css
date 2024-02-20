@@ -1,0 +1,68 @@
+body{
+  background-image: url("https://i.pinimg.com/originals/ba/76/d6/ba76d65a5b83b7904ffa68ae70ce3476.jpg");
+}
+h2 {
+  font-size: 3em;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  border-style: groove;
+  border-radius: 10px;
+  background-color: black;
+  color: skyblue;
+
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+h1{
+  font-size: 4.5em;
+  font-family: Bungee;
+  text-align: center;
+  color: Yellow;
+}
+
+h3{
+  font-size: 2.5em;
+  font-family: Frijole;
+  text-align: center;
+  color: Orangered;
+}
+
+.question{
+  font-size: 2em;
+  font-family: Gaegu;
+  text-align: center;
+  color: GhostWhite;
+}
+input{
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  display: block;
+  padding:10px 6px;
+}
+.btnSubmit{
+  border: solid;
+  border-radius: 10px;
+  background-color: rgb(107, 193, 250);
+  /* extend the button size */
+  padding-left: 80px;
+  padding-right: 80px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  /* center the button */
+  display: block;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  /* editing the text */
+  font-size: 30px;
+  color: white;
+  transition: all 0.2s ease-in-out;
+}
+.btnSubmit:hover {
+color: rgba(255, 255, 255, 1);
+background-color: #2196f3;
+box-shadow: 0 5px 15px rgba(145, 92, 182, .4);
+}

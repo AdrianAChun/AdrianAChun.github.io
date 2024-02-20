@@ -1,0 +1,56 @@
+h1{
+  font-size: 5em;
+  font-family:Alata;
+  text-align: center;
+  color:Orange;
+}
+body{
+  background-attachment: fixed;
+  /* background-image: url("https://chromethemer.com/wallpapers/chromebook-wallpapers/download/chalkboard-1920x1080.jpg"); */
+  background-image: url(https://avante.biz/wp-content/uploads/Math-blackboard-wallpaper/Math-blackboard-wallpaper23.jpg);
+}
+.register{
+  font-size: 20px;
+  color: rgb(71, 71, 84);
+  font-family: Archivo;
+  text-align: left;
+}
+.txtInfo{
+  text-align: left;
+  display: block;
+  font-size: 2em;
+}
+
+table{
+  border: solid grey;
+  border-radius: 10px;
+  background-color: white;
+  margin-left:auto;
+  margin-right: auto;
+  text-align: center;
+  padding:0 50px;
+}
+.btnRegister{
+  border: solid;
+  border-radius: 10px;
+  background-color: rgb(107, 193, 250);
+  /* extend the button size */
+  padding-left: 80px;
+  padding-right: 80px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  /* center the button */
+  display: block;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  /* editing the text */
+  font-size: 30px;
+  color: white;
+  transition: all 0.2s ease-in-out;
+}
+.btnRegister:hover {
+  color: rgba(255, 255, 255, 1);
+  background-color: #2196f3;
+  box-shadow: 0 5px 15px rgba(145, 92, 182, .4);
+}

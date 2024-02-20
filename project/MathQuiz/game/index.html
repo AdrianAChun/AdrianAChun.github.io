@@ -1,0 +1,53 @@
+<!--
+  Matthew Yu, Adrian Ng
+	2/26/2020
+	The main page of the quiz website
+	This file is the homepage of the quiz, mainly for login so it can store data
+-->
+<!-- TODO:
+  * Recode index.html since I want to make all login into on .php format, it can be easier to manage (If have time)
+  * Make a tip text to tell user answer should be rounded
+  * leaderboard for quiz success 100% time record
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Quiz user registeration</title>
+
+    <!-- link of the resources we will use -->
+    <link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet'> <!-- https://www.w3schools.com/howto/howto_google_fonts.asp -->
+    <link href='https://fonts.googleapis.com/css?family=Graduate' rel='stylesheet'> <!-- https://www.w3schools.com/howto/howto_google_fonts.asp -->
+    <link href='https://fonts.googleapis.com/css?family=Jua' rel='stylesheet'> <!-- https://www.w3schools.com/howto/howto_google_fonts.asp -->
+    <link rel="stylesheet" href="style.css">
+
+  </head>
+  <body>
+
+    <h1>Math Quick Test</h1>
+    <br>
+    <br>
+    <form action="mainPage/verify.php" method="POST">
+      <table>
+        <tr>
+          <td class="username">Username: </td>
+          <td><input type="text" name="txtUsername" size="25" required></td>
+        </tr>
+        <tr>
+          <td class="password">Password:</td>
+          <td><input type="password" name="txtPassword" size="25" required></td>
+        </tr>
+        <br>
+        <br>
+      </table>
+      <br>
+      <input class="btn" type="submit" value="Login">
+    </form>
+
+    <p>Don't have an account yet? Register <a href="register/register.php">here</a>!</p>
+
+    <a class="btn" href="sources">View sources</a>
+
+  </body>
+</html>

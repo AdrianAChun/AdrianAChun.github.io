@@ -1,0 +1,50 @@
+
+h1 {
+  font-size: 6em;
+  font-family: Bangers;
+  text-align: center;
+  color:lightskyblue;
+}
+
+p{
+  font-size: 3em;
+  font-family: Graduate;
+  text-align: center;
+  color: MistyRose;
+}
+
+table{
+  font-size: 2.5em;
+  font-family: Jua;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  color:LemonChiffon;
+}
+input{
+  padding:15px 6px;
+}
+
+.btn{
+  /* center the button */
+  display: block;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  /* editing the text */
+  text-decoration: underline;
+  font-size: 2em;
+  color: #ffcd00;
+  border-style: hidden;
+  transition: all 0.2s ease-in-out;
+  background-color: inherit;
+}
+.btn:hover {
+  color: rgba(255, 255, 255, 1);
+  background-color: #2196f3;
+  box-shadow: 0 5px 15px rgba(145, 92, 182, .4);
+}
+
+body{
+	background-image: url("https://d2r55xnwy6nx47.cloudfront.net/uploads/2019/12/MATH-2019_2880x1620_Lede_v01-2880x1620.jpg");
+}

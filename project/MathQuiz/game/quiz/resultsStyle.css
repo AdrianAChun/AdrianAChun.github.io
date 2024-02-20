@@ -1,0 +1,67 @@
+.number{
+color: LightCyan;
+}
+.question{
+  color: LightSteelBlue;
+}
+.answer{
+  color: LightCyan;
+}
+.QAnswer{
+  color: LightSteelBlue;
+}
+.resultTable {
+  border-style: double;
+}
+th {
+  border-style: solid;
+}
+td {
+  border-style: solid;
+}
+h1{
+  text-align: center;
+  font-size: 2em;
+  color: salmon;
+}
+body{
+  background-attachment: fixed;
+  background-image:linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, 0.8)),url("https://www.ecopetit.cat/wpic/mpic/54-549096_1920x1080-chalkboard-hd-wallpapers-data-id-68287-green.jpg");
+}
+h2{
+  text-align: center;
+  font-size: 2em;
+  color: yellow;
+}
+table{
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.5em;
+}
+a{
+  border: solid;
+  border-radius: 10px;
+  background-color: rgb(107, 193, 250);
+  /* extend the button size */
+  padding-left: 80px;
+  padding-right: 80px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  /* center the button */
+  display: block;
+  text-align: center;
+  margin-left: 600px;
+  margin-right:600px;
+  /* editing the text */
+  font-size: 30px;
+  color: white;
+  transition: all 0.2s ease-in-out;
+}
+a:hover {
+  color: rgba(255, 255, 255, 1);
+  background-color: #2196f3;
+  box-shadow: 0 5px 15px rgba(145, 92, 182, .4);
+}
+
+}
